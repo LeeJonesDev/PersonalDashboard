@@ -3,30 +3,14 @@ import logo from './logo.svg';
 import './App.css';
 
 //import GridLayout from 'react-grid-layout';
-import makeStyles from '@material-ui/core/styles/makeStyles'
+
 import DashboardCard from './Components/DashboardCard'
 import LinkCardContent from './Components/LinkCardContent'
 
+
 class App extends Component {
- 
-  render() {
-    const classes = makeStyles({
-      root: {
-        minWidth: 275,
-        maxWidth: 750
-      },
-      bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
-      },
-      title: {
-        fontSize: 14,
-      },
-      pos: {
-        marginBottom: 12,
-      },
-    });
+
+  render() {      
 
     const sites = [
       {text:"google.com", url:"http://google.com", description: "this is a link to google."},
@@ -50,7 +34,6 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <DashboardCard 
-          className={classes.root} 
           variant={"outlined"} 
           content={cardContent}
         />
