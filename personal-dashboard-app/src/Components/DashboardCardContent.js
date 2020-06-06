@@ -2,32 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types'; 
 import urlPropType from 'url-prop-type'; 
 
-import {CardContent, Typography} from '@material-ui/core';
+import {CardContent} from '@material-ui/core';
+import DashboardTypography from './DashboardTypography';
+
+import {useStyles} from '../StyleClasses/CardStyles';
 
 
-const LinkCardContent = (props) => {
-    
+const DashboardCardContent  = (props) => {
+  const styles = useStyles();
+
   return (
     <CardContent> 
-      <Typography 
-        className={props.classes.title} 
-        color="textSecondary" 
+      <DashboardTypography
+        className={styles.title}    
+        color={"textSecondary"} 
         gutterBottom
-      > 
-        {props.title}
-      </Typography> 
+        text={props.title}
+      /> 
       {
         props.sites && props.sites.map((site, i) => {
           return (
             <div key={i}>
-                <Typography>
-                  <a href={site.url} >{site.text}</a>
-                </Typography>
+                <DashboardTypography url={site.url} text={site.text} />
                 {
                   site.description && 
-                    <Typography>
-                        {site.description}
-                    </Typography>                    
+                    <DashboardTypography text={site.description} color="textPrimary"/>                    
                 }
             </div>
           )
@@ -37,7 +36,7 @@ const LinkCardContent = (props) => {
   );  
 };
 
-LinkCardContent.propTypes = {
+DashboardCardContent.propTypes = {
     title: PropTypes.string.isRequired,
     sites: PropTypes.arrayOf(
       PropTypes.shape({
@@ -49,4 +48,4 @@ LinkCardContent.propTypes = {
     classes: PropTypes.func
 };
 
-export default LinkCardContent;
+export default DashboardCardContent;

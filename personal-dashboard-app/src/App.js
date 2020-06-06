@@ -5,7 +5,7 @@ import './App.css';
 //import GridLayout from 'react-grid-layout';
 
 import DashboardCard from './Components/DashboardCard'
-import LinkCardContent from './Components/LinkCardContent'
+import DashboardCardContent from './Components/DashboardCardContent'
 
 
 class App extends Component {
@@ -18,10 +18,10 @@ class App extends Component {
       {text:"google.com", url:"http://google.com"}
     ]
 
-    const cardContent = <LinkCardContent 
+    const cardContent = <DashboardCardContent 
       sites={sites} 
-      title={"LInks Title"} 
-      classes={classes}
+      title={"Links Title"} 
+      color={"textSecondary"}
     />
     
     return (

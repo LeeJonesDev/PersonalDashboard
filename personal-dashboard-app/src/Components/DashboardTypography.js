@@ -5,7 +5,7 @@ import urlPropType from 'url-prop-type';
 
 import {Typography} from '@material-ui/core';
 
-const LinkTypography = (props) => {
+const DashboardTypography = (props) => {
       
         return ( 
             <Typography
@@ -17,9 +17,9 @@ const LinkTypography = (props) => {
         )
   };
 
-export default LinkTypography;
+export default DashboardTypography;
 
-LinkTypography.propTypes ={
+DashboardTypography.propTypes ={
     text: PropTypes.string.isRequired,
     url: urlPropType
 };
