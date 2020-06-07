@@ -7,5 +7,16 @@ export const useStyles = makeStyles(({
     },
     title: {
       fontSize: 24,
+    },
+    sites:{
+        display:"flex"
+    },
+    urlLink:{
+        display: "inline-flex",
+        paddingRight: 5,
+           
+    },
+    linkIcon:{
+        transform: "rotate(45deg)"  
     }
 }));

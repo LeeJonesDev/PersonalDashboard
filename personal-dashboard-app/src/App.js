@@ -7,23 +7,28 @@ import './App.css';
 import DashboardCard from './Components/DashboardCard'
 import DashboardCardContent from './Components/DashboardCardContent'
 
+import Websites from './Data/Websites.json'
 
 class App extends Component {
 
-  render() {      
+    render() {
+    const websites = Websites.siteGroups.map( (sg, i) =>
+    {
+    return (
+        <DashboardCard
+        key={i}
+        variant={"outlined"}
+        content={
+            <DashboardCardContent
+                sites={sg.sites}
+                title={sg.title}
+                color={"textSecondary"}
+            />
+            }
+        />
+    )
+    })
 
-    const sites = [
-      {text:"google.com", url:"http://google.com", description: "this is a link to google."},
-      {text:"google.com", url:"http://google.com"},
-      {text:"google.com", url:"http://google.com"}
-    ]
-
-    const cardContent = <DashboardCardContent 
-      sites={sites} 
-      title={"Links Title"} 
-      color={"textSecondary"}
-    />
-    
     return (
       <div className="App">
         <div className="App-header">
@@ -33,10 +38,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <DashboardCard 
-          variant={"outlined"} 
-          content={cardContent}
-        />
+        {websites}
       </div>
     );
   }

@@ -1,0 +1,22 @@
+{
+    "siteGroups":[
+        {
+            "title": "website group title",
+            "sites":[
+                {
+                    "text":"google.com", 
+                    "url":"http://google.com", 
+                    "description": "this is a link to google."
+                },
+                {
+                    "text":"google.com", 
+                    "url":"http://google.com"
+                },
+                {
+                    "text":"google.com",
+                    "url":"http://google.com"
+                }
+            ]
+        }
+    ]
+}
