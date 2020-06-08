@@ -18,5 +18,8 @@ export const useStyles = makeStyles(({
     },
     linkIcon:{
         transform: "rotate(45deg)"  
+    },
+    siteFavicon:{
+        maxHeight: 25
     }
 }));

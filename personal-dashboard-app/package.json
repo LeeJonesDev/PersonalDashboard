@@ -8,6 +8,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-grid-layout": "^0.18.3",
+    "react-image": "^4.0.1",
     "react-scripts": "0.9.x",
     "url-prop-type": "^1.2.4"
   },
