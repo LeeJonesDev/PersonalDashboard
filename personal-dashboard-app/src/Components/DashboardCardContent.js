@@ -6,6 +6,7 @@ import {CardContent} from '@material-ui/core';
 import DashboardTypography from './DashboardTypography';
 
 import {useStyles} from '../StyleClasses/CardStyles';
+import HrefTargets from '../Constants/HrefTargets';
 
 
 const DashboardCardContent  = (props) => {
@@ -27,14 +28,9 @@ const DashboardCardContent  = (props) => {
                     className={styles.urlLink}
                     url={site.url}
                     text={site.text}
-                    />
-                    {
-                    site.description &&
-                        <DashboardTypography
-                        text={site.description}
-                        color="textPrimary"
-                        />
-                    }
+                    description={site.description}
+                    hreftarget={HrefTargets.blank}
+                    />                    
                 </div>
             )
             })

@@ -8,6 +8,7 @@ import {Typography} from '@material-ui/core';
 
 import {useStyles} from '../StyleClasses/CardStyles';
 
+
 const DashboardTypography = (props) => {
     const styles = useStyles();
 
@@ -43,25 +44,55 @@ const DashboardTypography = (props) => {
             )
       }
 
+    const getUrlTypography = () => {
+        return (
+            <Typography {...props} >
+                {props.url && (
+                    <a href={props.url} className={styles.hrefLink} target={props.hreftarget}>
+                        <SiteFavicon />
+                        {props.text && (
+                            <span className={styles.hrefLinkText}>{props.text}</span>
+                        )}
+                    </a>
+                )}                   
+                {props.description && (
+                    <span className={styles.LinkDescription}>{props.description}</span>
+                )}
+            </Typography>
+        )
+    }
+    const getDefaultTypography = () => {
+        return (
+            <Typography {...props} >
+                {props.text && (
+                    <span className={styles.defaultText}>{props.text}</span>
+                )}   
+                {props.description && (
+                    <span className={styles.defaultDescription}>{props.description}</span>
+                )}
+            </Typography>
+        )
+    }
+
+    const getContentFromProps = () =>{
+        if(props.url){
+            return getUrlTypography();
+        }
+        else{
+            return getDefaultTypography();
+        }
+    }
 
     return (
-        <Typography
-            {...props}
-        >
-            {props.url && (
-                <a href={props.url}>
-                    <SiteFavicon />
-                    {props.text}
-                </a>
-            )}
-            {!props.url && props.text}
-        </Typography>
+        getContentFromProps()        
     )
   };
 
 export default DashboardTypography;
 
 DashboardTypography.propTypes ={
+    description: PropTypes.string,
     text: PropTypes.string.isRequired,
-    url: urlPropType
+    url: urlPropType,
+    hreftarget: PropTypes.string
 };

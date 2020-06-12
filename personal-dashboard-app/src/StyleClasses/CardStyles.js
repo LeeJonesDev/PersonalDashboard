@@ -1,25 +1,34 @@
 import { makeStyles } from "@material-ui/core/styles";
+import {StyleConstants} from "../Constants/StyleConstants"
 
 export const useStyles = makeStyles(({
     root: {
-      minWidth: 275,
-      maxWidth: 750
+      maxWidth: StyleConstants.Cards.maxCardWidth
     },
     title: {
-      fontSize: 24,
+      fontSize: StyleConstants.Cards.titleFontSize,
     },
     sites:{
         display:"flex"
     },
-    urlLink:{
-        display: "inline-flex",
-        paddingRight: 5,
-           
+    hrefLink: {
+        display: "flex",
+        paddingRight: StyleConstants.General.basicPadding
     },
     linkIcon:{
-        transform: "rotate(45deg)"  
+        transform: "rotate(45deg)",  
+        height: StyleConstants.Cards.linkRowHeight
     },
     siteFavicon:{
-        maxHeight: 25
+        maxHeight: StyleConstants.Cards.linkRowHeight
+    },
+    hrefLinkText:{
+        display: "inline-flex",
+        height: StyleConstants.Cards.linkRowHeight
+    },
+    LinkDescription:{
+        fontStyle: "italic",
+        color: "darkgray",
+        padding: 25
     }
 }));

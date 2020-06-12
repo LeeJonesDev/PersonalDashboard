@@ -4,16 +4,16 @@
             "title": "website group title",
             "sites":[
                 {
-                    "text":"google.com", 
+                    "text":"go to this link!", 
                     "url":"http://google.com", 
                     "description": "this is a link to google."
                 },
                 {
-                    "text":"google.com", 
-                    "url":"http://google.com"
+                    "text":"go to this link!", 
+                    "url":"http://google.comzz"
                 },
                 {
-                    "text":"google.com",
+                    "text":"go to this link!",
                     "url":"http://google.com"
                 }
             ]
