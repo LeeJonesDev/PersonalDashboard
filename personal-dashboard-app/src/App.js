@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import GridLayout from 'react-grid-layout';
+import RGL, { WidthProvider } from "react-grid-layout";
+const ReactGridLayout = WidthProvider(RGL);
 
 import DashboardCard from './Components/DashboardCard'
 import DashboardCardContent from './Components/DashboardCardContent'
 
 import Websites from './Data/Websites.json'
-import { GridStyles } from './StyleClasses/GridStyles';
 
 class App extends Component {
 
@@ -42,12 +42,12 @@ class App extends Component {
         </div>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <GridLayout className={GridStyles.layout} layout={layout} cols={12} rowHeight={30} width={1200} >
-        <div key="sites">
-          {websites}
-        </div>
-        </GridLayout>
+        </p>        
+        <ReactGridLayout  layout={layout} cols={12} rowHeight={30} width={1200} >
+          <div key="sites">
+            {websites}
+          </div>
+        </ReactGridLayout>
         
       </div>
     );
