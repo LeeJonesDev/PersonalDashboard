@@ -16,17 +16,17 @@ class App extends Component {
     const websites = Websites.siteGroups.map( (sg, i) =>
     {
       return (
-          <DashboardCard
-          key={i}
-          variant={"outlined"}
-          content={
-              <DashboardCardContent
-                  sites={sg.sites}
-                  title={sg.title}
-                  color={"textSecondary"}
-              />
-              }
-          />
+        <DashboardCard
+            key={i}
+            variant={"outlined"}
+            content={
+                <DashboardCardContent
+                    sites={sg.sites}
+                    title={sg.title}
+                    color={"textSecondary"}
+                />
+            }
+        />
       )
     })
 
