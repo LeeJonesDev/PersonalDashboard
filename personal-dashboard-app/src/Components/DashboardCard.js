@@ -2,12 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types'; 
 
 import {Card} from '@material-ui/core';
+import {useStyles} from '../StyleClasses/CardStyles';
 
 const DashboardCard = (props) => {
+    const styles = useStyles();
 
     return (
         <Card 
-            className={props.classes} 
+            className={styles.root} 
             variant={props.variant}
         >
             {props.content}

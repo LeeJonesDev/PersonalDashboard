@@ -4,10 +4,13 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.10.1",
+    "@material-ui/icons": "^4.9.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-grid-layout": "^0.18.3",
-    "react-scripts": "0.9.x"
+    "react-image": "^4.0.1",
+    "react-scripts": "0.9.x",
+    "url-prop-type": "^1.2.4"
   },
   "devDependencies": {},
   "scripts": {

@@ -32,6 +32,13 @@
     react-is "^16.8.0"
     react-transition-group "^4.4.0"
 
+"@material-ui/icons@^4.9.1":
+  version "4.9.1"
+  resolved "https://registry.yarnpkg.com/@material-ui/icons/-/icons-4.9.1.tgz#fdeadf8cb3d89208945b33dbc50c7c616d0bd665"
+  integrity sha512-GBitL3oBWO0hzBhvA9KxqcowRUsA0qzwKkURyC8nppnC3fw54KPKZ+d4V1Eeg/UnDRSzDaI9nGCdel/eh9AQMg==
+  dependencies:
+    "@babel/runtime" "^7.4.4"
+
 "@material-ui/styles@^4.10.0":
   version "4.10.0"
   resolved "https://registry.yarnpkg.com/@material-ui/styles/-/styles-4.10.0.tgz#2406dc23aa358217aa8cc772e6237bd7f0544071"
@@ -3716,6 +3723,11 @@ is-typedarray@~1.0.0:
   resolved "https://registry.yarnpkg.com/is-typedarray/-/is-typedarray-1.0.0.tgz#e479c80858df0c1b11ddda6940f96011fcda4a9a"
   integrity sha1-5HnICFjfDBsR3dppQPlgEfzaSpo=
 
+is-url@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/is-url/-/is-url-1.2.4.tgz#04a4df46d28c4cff3d73d01ff06abeb318a1aa52"
+  integrity sha512-ITvGim8FhRiYe4IQ5uHSkj7pVaPDrCTkNd3yq3cV7iZAcJdHTUMPMEHcqSOy9xZ9qFenQCvi+2wjH9a1nXqHww==
+
 is-utf8@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-utf8/-/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
@@ -5701,6 +5713,11 @@ react-grid-layout@^0.18.3:
     react-draggable "^4.0.0"
     react-resizable "^1.9.0"
 
+react-image@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/react-image/-/react-image-4.0.1.tgz#e85a9c5ca11c84c59098dc0db3f5fabb05aacc50"
+  integrity sha512-B80I1UQU6XHJ5ZrQrmD6ADc5GrBlpXRsmcgBgwwJnfYflynkZ5NBrLBR+yt3zlDp6qlelxrBnF0ChpOwdgYiEA==
+
 react-is@^16.7.0, react-is@^16.8.0, react-is@^16.8.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
@@ -7005,6 +7022,13 @@ url-parse@^1.0.1, url-parse@^1.4.3:
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
+
+url-prop-type@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/url-prop-type/-/url-prop-type-1.2.4.tgz#131477c27af10f607efef9361450bd45a8eaa4cd"
+  integrity sha512-Qnt6ycm0fJGGRvKl1pYBXWMncc/vDFewcb2qkOkS/YsMb7T1sW9fUkn+PAuhP4ofsPJAwMyiLEljX21rKhj88A==
+  dependencies:
+    is-url "^1.2.4"
 
 url@^0.11.0:
   version "0.11.0"
