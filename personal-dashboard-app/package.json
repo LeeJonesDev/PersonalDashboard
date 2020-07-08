@@ -17,9 +17,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "react-scripts start",
-    "start-server": "node server.js",
-    "start-all": "run-p start start-server",
+    "start": "run-p start-react start-server",
+    "start-react": "react-scripts start",
+    "start-server": "node server.js",    
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
