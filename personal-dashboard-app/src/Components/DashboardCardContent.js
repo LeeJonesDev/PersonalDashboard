@@ -21,20 +21,34 @@ const DashboardCardContent  = (props) => {
                 text={props.title}
             />
             {
-            props.sites && props.sites.map((site, i) => {
-            return (
-                <div key={i}  className={styles.sites}>
-                    <DashboardTypography
-                    className={styles.urlLink}
-                    url={site.url}
-                    text={site.text}
-                    description={site.description}
-                    hreftarget={HrefTargets.blank}
-                    />                    
-                </div>
-            )
-            })
-        }
+                props.sites && props.sites.map((site, i) => {
+                return (
+                    <div key={i}  className={styles.sites}>
+                        <DashboardTypography
+                            url={site.url}
+                            text={site.text}
+                            description={site.description}
+                            hreftarget={HrefTargets.blank}
+                        />                    
+                    </div>
+                )
+                })
+            }
+            {
+                props.apps && props.apps.map((app, i) => {
+                return (
+                    <div key={i}  className={styles.apps}>
+                        <DashboardTypography
+                            className={styles.appLink}
+                            path={app.path}
+                            text={app.text}
+                            description={app.description}
+                        />                    
+                    </div>
+                )
+                })
+            }
+            <div className={"cardHandle"}>HANDLE</div>
         </CardContent>
     );
 };
@@ -44,6 +58,13 @@ DashboardCardContent.propTypes = {
     sites: PropTypes.arrayOf(
         PropTypes.shape({
             url: urlPropType.isRequired,
+            text: PropTypes.string.isRequired,
+            description: PropTypes.text
+        })
+    ),
+    apps: PropTypes.arrayOf(
+        PropTypes.shape({
+            path: PropTypes.string.isRequired,
             text: PropTypes.string.isRequired,
             description: PropTypes.text
         })
