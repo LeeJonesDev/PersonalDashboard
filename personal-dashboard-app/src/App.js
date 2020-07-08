@@ -13,14 +13,14 @@ let Applications;
 try {
   Applications = require('./Data/Applications.json');
 } catch (ex) {
-  Applications = require('./Data/Applications-example.json');
+  Applications = require('./Data/Examples/Applications-example.json');
 }
 //load the example file if a user hasn't provided their own Websites.json file
 let Websites;
 try {
   Websites = require('./Data/Websites.json');
 } catch (ex) {
-  Websites = require('./Data/Websites-example.json');
+  Websites = require('./Data/Examples/Websites-example.json');
 }
 
 
