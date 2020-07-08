@@ -9,6 +9,7 @@ import DashboardCard from './Components/DashboardCard'
 import DashboardCardContent from './Components/DashboardCardContent'
 
 import Websites from './Data/Websites.json'
+import Applications from './Data/Applications.json'
 
 class App extends Component {
 
@@ -29,10 +30,28 @@ class App extends Component {
         />
       )
     })
+    const applications = Applications.appGroups.map( (ag, i) =>
+    {
+        return (
+            <DashboardCard
+                key={i}
+                variant={"outlined"}
+                content={
+                    <DashboardCardContent
+                        title={ag.title}
+                        color={"textSecondary"}
+                        apps={ag.apps}
+                    />
+                }
+            />
+        )
+    })
 
     const layout = [
-      {i: "sites", x: 0, y: 0, w: 4, h: 2, minW: 1, maxW: 12}
+      {i: "sites", x: 0, y: 0, w: 4, h: 2, minW: 1, maxW: 12},
+      {i: "apps", x: 4, y: 0, w: 4, h: 2, minW: 1, maxW: 12}
     ]
+
 
     return (
       <div className="App">
@@ -43,9 +62,12 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>        
-        <ReactGridLayout  layout={layout} cols={12} rowHeight={30} width={1200} >
+        <ReactGridLayout  layout={layout} cols={12} rowHeight={30} width={1200} draggableHandle={".cardHandle"}>
           <div key="sites">
             {websites}
+          </div>
+          <div key="apps"> 
+              {applications}
           </div>
         </ReactGridLayout>
         

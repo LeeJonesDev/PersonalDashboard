@@ -11,6 +11,13 @@ export const useStyles = makeStyles(({
     sites:{
         display:"flex"
     },
+    apps: {
+        display: "flex"
+    },
+    pathLink: {
+        display: "flex",
+        paddingRight: StyleConstants.General.basicPadding
+    },
     hrefLink: {
         display: "flex",
         paddingRight: StyleConstants.General.basicPadding
@@ -25,6 +32,11 @@ export const useStyles = makeStyles(({
     hrefLinkText:{
         display: "inline-flex",
         height: StyleConstants.Cards.linkRowHeight
+    },
+    AppDescription:{
+        fontStyle: "italic",
+        color: "darkgray",
+        padding: 25
     },
     LinkDescription:{
         fontStyle: "italic",
