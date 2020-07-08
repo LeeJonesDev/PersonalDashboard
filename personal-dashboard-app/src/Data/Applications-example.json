@@ -1,0 +1,14 @@
+{
+    "appGroups":[
+        {
+            "title": "application group title",
+            "apps":[
+                {
+                    "text": "notepad",
+                    "path": "C:\\Windows\\System32\\notepad.exe",
+                    "description": "this program is for editing text files"
+                }
+            ]
+        }
+    ]
+}
