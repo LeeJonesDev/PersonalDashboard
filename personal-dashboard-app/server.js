@@ -1,9 +1,12 @@
 const express = require('express');
 const path = require('path');
 const {execFile} = require('child_process');
+const cors = require('cors');
 
 const app = express();
 app.use(express.static(path.join(__dirname, 'build')));
+
+app.use(cors());
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
