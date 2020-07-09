@@ -47,8 +47,7 @@ const DashboardCardContent  = (props) => {
                     </div>
                 )
                 })
-            }
-            <div className={"cardHandle"}>HANDLE</div>
+            }            
         </CardContent>
     );
 };

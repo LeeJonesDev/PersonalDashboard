@@ -42,5 +42,10 @@ export const useStyles = makeStyles(({
         fontStyle: "italic",
         color: "darkgray",
         padding: 25
+    },
+    cardHandle:{
+        color: "darkgray",
+        float: "right",
+        padding: "4px 4px 0 0"        
     }
 }));
