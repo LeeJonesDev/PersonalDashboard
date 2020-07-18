@@ -7,6 +7,7 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 import DashboardCard from './Components/DashboardCard';
 import DashboardCardContent from './Components/DashboardCardContent';
+import {getLayoutsFromLocalStorage, saveLayoutsFromLocalStorage} from './Utility/LocalStorageUtility';
 
 //load the example file if a user hasn't provided their own Applications.json file
 let Applications;
@@ -23,72 +24,95 @@ try {
   Websites = require('./Data/Examples/Websites.json');
 }
 
-//TODO: below to util class
+//prime saved layouts from localstorage when loading the app
 const originalLayouts = getLayoutsFromLocalStorage("card-layouts") || {};
-function getLayoutsFromLocalStorage(key) {
-  let localStorage = {};
-  if (global.localStorage) {
-    try {
-      localStorage = JSON.parse(global.localStorage.getItem("rgl-8")) || {};
-    } catch (e) {
-      /*Ignore*/
-    }
-  }
-  return localStorage[key];
-}
-
-function saveLayoutsFromLocalStorage(key, value) {
-  if (global.localStorage) {
-    global.localStorage.setItem(
-      "rgl-8",
-      JSON.stringify({
-        [key]: value
-      })
-    );
-  }
-}
-//TODO: above to util class
 
 class App extends Component {
+  static defaultProps = {
+    className: "layout",
+    rowHeight: 1, //we set this at 1 so we can calculate our card heights after render 
+    rowMargin: 10,
+    cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
+    breakpoints:{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0},
+    cardHeights: []
+  };
+
   constructor(props){
     super(props);
     this.state = {
-      layouts: JSON.parse(JSON.stringify(originalLayouts))
+      layouts: JSON.parse(JSON.stringify(originalLayouts)),
+      currentBreakpoint: "lg",
+      compactType: "vertical",
+      mounted: false,
+      cardHeights: []
     }
+    this.resetLayout = this.resetLayout.bind(this);
+    this.onLayoutChange = this.onLayoutChange.bind(this);
+    this.updateCardHeights = this.updateCardHeights.bind(this);
+    this.onBreakpointChange = this.onBreakpointChange.bind(this);
   }
 
-  static get defaultProps() {
-    return {
-      className: "layout",
-      cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
-      rowHeight: 150,//TODO: does this do anything?
-    };
+   componentDidMount(){
+    this.updateCardHeights();
+    this.setState({ mounted: true });
   }
+  
+  updateCardHeights(){
+    let cardHeights = [];   
+
+    const wrappers = [].slice.call(document.getElementsByClassName("dashboard-card-wrapper"));
+    
+    wrappers.forEach((wrapper, i) => {    
+      const card = wrapper.getElementsByClassName("dashboard-card");
+      cardHeights[i] = card[0].offsetHeight / this.props.rowMargin; //heights are normally elemHeight * rowHeight * margin
+    });
+    this.setState({cardHeights: cardHeights});
+  }
+  
+  onBreakpointChange = (breakpoint) => {
+    this.setState({
+      currentBreakpoint: breakpoint
+    });
+  };
 
   resetLayout() {
     this.setState({ layouts: {} });
   }
-
+  
   onLayoutChange(layout, layouts) {
     saveLayoutsFromLocalStorage("card-layouts", layouts);
     this.setState({ layouts });
   }
+
+  getDataGridElementProperties(index){
+    const colNum = this.props.cols[this.state.currentBreakpoint]
+    const width = 2.25;
+    const x = (Math.floor(index % Math.floor(colNum / width)) * width); //TODO: something about this gets off when cards move, try = someState || formula?
+    const y = 0;
+    const h = this.state.cardHeights[index] || 1;
+
+    return { w: width, h: h, x: x, y: y}
+  }
+
   render() {
     let dataGridIndex = 0;
     const websites = Websites.siteGroups.map( (sg, i) =>
     {
-      //TODO: heights are overlapping, figure out how to address
+      const dataGrid = this.getDataGridElementProperties(dataGridIndex);
+      
       return (
         <div
-          key={dataGridIndex}
-          data-grid={{ w: 2, h: 1, x: (dataGridIndex++ * 2) % 12, y: 0}}>
+          key={dataGridIndex++}
+          data-grid={dataGrid}
+          className={"dashboard-card-wrapper"}
+          >  
           <DashboardCard    
               variant={"outlined"}
               content={
                   <DashboardCardContent
                       sites={sg.sites}
                       title={sg.title}
-                      color={"textSecondary"}
+                      color={"textSecondary"} 
                   />
               }
           />        
@@ -97,19 +121,22 @@ class App extends Component {
     })
     const applications = Applications.appGroups.map( (ag, i) =>
     {
-        //TODO: heights are overlapping, figure out how to address
+        const dataGrid = this.getDataGridElementProperties(dataGridIndex);
+
         return (
             <div
-              key={dataGridIndex}
-              data-grid={{ w: 2, h: 1, x: (dataGridIndex++ * 2) % 12, y: 0}}>
+              key={dataGridIndex++}
+              data-grid={dataGrid}
+              className={"dashboard-card-wrapper"}
+            >  
               <DashboardCard
                   variant={"outlined"}
                   content={
-                      <DashboardCardContent
-                          title={ag.title}
-                          color={"textSecondary"}
-                          apps={ag.apps}
-                      />
+                    <DashboardCardContent
+                        title={ag.title}
+                        color={"textSecondary"}
+                        apps={ag.apps}
+                    />
                   }
               />
             </div>
@@ -122,15 +149,19 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
+        <div>
+          Current Breakpoint: {this.state.currentBreakpoint} (
+          {this.props.cols[this.state.currentBreakpoint]} columns)
+        </div>
         <button onClick={() => this.resetLayout()}>Reset Layout</button>
-        <ResponsiveReactGridLayout  
-          layouts={this.state.layouts}
-          breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}} 
-          onLayoutChange={(layout, layouts) =>
-            this.onLayoutChange(layout, layouts)
-          }
-          draggableHandle={".card-handle"}
-          >
+        <ResponsiveReactGridLayout
+          {...this.props}  
+          layouts={this.state.layouts}           
+          onBreakpointChange={this.onBreakpointChange}
+          onLayoutChange={this.onLayoutChange}
+          useCSSTransforms={this.state.mounted}
+          draggableHandle={".card-handle"}                  
+        >
             {websites}
             {applications}
         </ResponsiveReactGridLayout>

@@ -12,7 +12,7 @@ const DashboardCard = (props) => {
     
     return (
         <Card 
-            className={styles.root} 
+            className={styles.root + " dashboard-card"} 
             variant={props.variant}
         >
             {handle}
